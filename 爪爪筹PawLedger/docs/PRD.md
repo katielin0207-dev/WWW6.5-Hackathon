@@ -90,9 +90,18 @@ This enables a complete lifecycle from rescue funding to post-recovery adoption 
 | 合约 | 用途 |
 |---|---|
 | `PawToken.sol` | ERC-20 治理代币，由 PawLedger 合约铸造 |
-| `PawLedger.sol` | 核心托管合约：案例管理、捐款、里程碑、审核逻辑 |
+| `PawLedger.sol` | 核心托管合约（UUPS 可升级）：案例管理、捐款、里程碑、审核逻辑 |
+| `PawAdoption.sol` | 宠物领养合约：宠物发布、实名哈希登记、领养申请、审核逻辑 |
 
 `ReviewerMultisig.sol` 已废弃，审核逻辑内化。
+
+**已部署地址 (Fuji Testnet)**
+
+| 合约 | 地址 |
+|---|---|
+| PawToken ($PAW) | `0x2B3F619dF5d9b4f855cC2a634a2db4E4A9837267` |
+| PawLedger (Proxy) | `0x7C2BBb15Cc5becD532ad10B696C35ebbDbFE92C3` |
+| PawAdoption | `0xa666392dc14B8dECc3b3BD4FF9e790821444e03F` |
 
 ---
 
@@ -189,6 +198,7 @@ hasReviewed[caseId][reviewer]                     // 防止重复审核
 2. 部署 PawLedger(pawTokenAddr, 0.1 ether, 1)
 3. pawToken.setMinter(pawLedgerAddr)   // 转让铸币权
 // PawLedger 构造函数自动注册 deployer 为第一个审核者
+4. 部署 PawAdoption()            // 独立合约，deployer 为 owner
 ```
 
 ---
@@ -270,8 +280,8 @@ useLocale       i18n：当前语言、切换、t('key') 翻译函数
 - **水龙头**: `faucet.avax.network`
 - **原生代币**: AVAX
 
-环境变量：在 `src/contracts/.env` 中填写 `PRIVATE_KEY=<部署钱包私钥>`。
-部署后将合约地址写入 `src/ui/src/config.js`。
+环境变量：在 `pawledger/contracts/.env` 中填写 `PRIVATE_KEY=<部署钱包私钥>`。
+部署后将合约地址写入 `pawledger/ui/src/config.js`。
 
 ---
 
