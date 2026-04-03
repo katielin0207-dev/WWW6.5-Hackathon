@@ -4,4 +4,4 @@ Language skills are a powerful tool for women to achieve independence. LinguPet 
 By studying languages, users earn points that can be used to mint virtual pet NFTs. 
 These NFTs serve as an immutable record of a female learner’s growth—a “on-chain badge” of her abilities.
 
-产品流程图 product flowchart：https://www.notion.so/Hackathon-Demo-337cdf84d056802eab30c49d7c2ebb4a
+产品流程图 product flowchart：https://www.notion.so/Hackathon-Demo-337cdf84d05680e09ce3ff085dd42346
