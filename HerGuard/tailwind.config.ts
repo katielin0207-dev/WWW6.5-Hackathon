@@ -79,6 +79,13 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      // 100dvh = dynamic viewport height (excludes mobile browser chrome)
+      minHeight: {
+        "[100dvh]": "100dvh",
+      },
+      height: {
+        "[100dvh]": "100dvh",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

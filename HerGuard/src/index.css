@@ -36,7 +36,7 @@
 
     --radius: 0.75rem;
 
-    /* HerGuard custom tokens */
+    /* The Unmuted custom tokens */
     --sos-default: 0 85% 43%;
     --sos-pressing: 32 100% 50%;
     --sos-success: 142 71% 45%;
@@ -65,9 +65,47 @@
 @layer base {
   * {
     @apply border-border;
+    /* Remove tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
+    /* Prevent callout on long-press (important for hold-to-SOS) */
+    -webkit-touch-callout: none;
   }
+
+  html {
+    /* Prevent overscroll bounce on iOS */
+    overscroll-behavior: none;
+    height: 100%;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    height: 100%;
+    /* Prevent text size adjustment on orientation change */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Fill safe area with background color */
+    background-color: hsl(var(--background));
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  #root {
+    height: 100%;
+    /* Constrain to phone width on desktop */
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Minimum 44×44px touch targets (Apple HIG / WCAG) */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent text selection during touch gestures */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
   }
 }
 

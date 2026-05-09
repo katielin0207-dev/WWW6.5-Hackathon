@@ -1,19 +1,23 @@
-import { Shield, Map, FileText } from "lucide-react";
+import { Shield, Map, FileText, Users } from "lucide-react";
 
 interface BottomNavProps {
-  activeTab: "sos" | "map" | "evidence";
-  onTabChange: (tab: "sos" | "map" | "evidence") => void;
+  activeTab: "sos" | "map" | "evidence" | "community";
+  onTabChange: (tab: "sos" | "map" | "evidence" | "community") => void;
 }
 
 const tabs = [
   { id: "sos" as const, label: "求救", icon: Shield },
   { id: "map" as const, label: "地图", icon: Map },
   { id: "evidence" as const, label: "证据", icon: FileText },
+  { id: "community" as const, label: "互助", icon: Users },
 ];
 
 export default function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card/95 backdrop-blur-md">
+    <nav
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card/95 backdrop-blur-md"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+    >
       <div className="mx-auto flex max-w-lg">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -22,7 +26,7 @@ export default function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`flex flex-1 flex-col items-center gap-1 py-3 text-xs font-medium transition-colors ${
+              className={`flex flex-1 flex-col items-center gap-1 py-3 text-xs font-medium transition-colors active:scale-95 ${
                 isActive ? "text-nav-active" : "text-nav-inactive"
               }`}
             >
